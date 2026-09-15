@@ -311,7 +311,7 @@
     };
 
     try {
-      const API_BASE = window.WHIMSY_BREWS_API_BASE || "http://127.0.0.1:5500";
+      const API_BASE = window.WHIMSY_BREWS_API_BASE || window.location.origin;
       const res = await fetch(API_BASE + "/api/reservation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

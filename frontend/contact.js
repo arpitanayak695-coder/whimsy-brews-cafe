@@ -107,7 +107,7 @@
       message: $("#cMessage").value.trim(),
     };
 
-    const API_BASE = window.WHIMSY_BREWS_API_BASE || "http://127.0.0.1:5000";
+    const API_BASE = window.WHIMSY_BREWS_API_BASE || window.location.origin ;
 
     try {
       const res = await fetch(API_BASE + "/api/contact", {
