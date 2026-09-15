@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Whimsy Brews &amp; Café — Rare Beans, Cinematic Brews</title>
+<meta name="description" content="Whimsy Brews & Café is a specialty coffee house serving rare single-origin beans, artisan brews and a warm café atmosphere." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="grain-overlay" aria-hidden="true"></div>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="logo" aria-label="Aurelia Coffee & Café — home">
+      <svg class="logo-mark" viewBox="0 0 48 48" width="30" height="30" aria-hidden="true">
+        <path d="M24 4C15 10 10 18 10 26a14 14 0 0 0 28 0c0-8-5-16-14-22Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M24 12c-4 4-7 9-7 14a7 7 0 0 0 14 0c0-5-3-10-7-14Z" fill="currentColor" opacity="0.85"/>
+      </svg>
+      <span class="logo-text">Whimsy<em>Brews &amp; Café</em></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#menu" class="nav-link">Menu</a>
+      <a href="#specials" class="nav-link">Specials</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#reviews" class="nav-link">Reviews</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="tel:+15551234287" class="nav-phone">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +1 (555) 123-4287
+      </a>
+      <a href="#reserve" class="btn btn-outline nav-cta">Reserve Table</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+  <nav class="drawer-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#specials">Specials</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#reviews">Reviews</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a href="#reserve" class="btn btn-solid drawer-cta">Reserve a Table</a>
+</aside>
+
+<main>
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <video class="hero-video" autoplay muted loop playsinline poster="E:\coffee-cafe website\frontend\assets\interior\interior-1.jpg">
+    <source src="E:\coffee-cafe website\frontend\assets\interior\interior-1.jpg" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-grid container">
+    <div class="hero-copy">
+      <p class="eyebrow" data-reveal>Premium Coffee Experience</p>
+      <h1 class="hero-title" data-reveal>Brewed to<br><span>Perfection</span></h1>
+      <p class="hero-tag" data-reveal>Every bean tells a story. Every cup creates a moment. Step into a world where coffee is more than a drink — it's a ritual worth slowing down for.</p>
+      <div class="hero-actions" data-reveal>
+        <a href="#menu" class="btn btn-solid" id="exploreMenuBtn">Explore Our Menu</a>
+        <a href="#reserve" class="btn btn-ghost">Book a Table</a>
+      </div>
+    </div>
+
+    <div class="hero-stage" id="heroStage" aria-hidden="true">
+      <canvas id="heroCanvas"></canvas>
+    </div>
+  </div>
+
+  <button class="scroll-cue" id="scrollCue" aria-label="Scroll down">
+    <span class="scroll-cue-line"></span>
+    <span>Scroll</span>
+  </button>
+</section>
+
+<!-- ================= SPECIALTY COFFEE CAROUSEL ================= -->
+<section class="collection" id="specials">
+  <div class="container collection-head">
+    <p class="eyebrow center">Rare Coffee Collection</p>
+    <h2 class="section-title center">Specialty Coffee, Sourced with Care</h2>
+  </div>
+
+  <div class="carousel-wrap container">
+    <button class="carousel-arrow left" id="carLeft" aria-label="Previous">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+
+    <div class="carousel-track" id="carouselTrack">
+
+      <article class="coffee-card" data-name="Ethiopian Yirgacheffe" data-origin="Yirgacheffe, Ethiopia" data-roast="Light Roast" data-notes="Jasmine, bergamot, ripe peach" data-brew="Pour-over" data-price="$6.50">
+        <div class="coffee-card-media">
+          <img src="https://images.unsplash.com/photo-1633275858168-d53d224b2a8c?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Espresso pouring into a white cup" loading="lazy">
+        </div>
+        <h3>Ethiopian Yirgacheffe</h3>
+        <p class="coffee-origin">Yirgacheffe, Ethiopia</p>
+        <p class="coffee-price">$6.50</p>
+      </article>
+
+      <article class="coffee-card" data-name="Colombian Supremo" data-origin="Huila, Colombia" data-roast="Medium Roast" data-notes="Toffee, red apple, cocoa" data-brew="Drip &amp; Espresso" data-price="$5.75">
+        <div class="coffee-card-media">
+          <img src="https://images.unsplash.com/photo-1622985345414-3264b2ea5761?q=80&w=704&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Freshly poured coffee with cream" loading="lazy">
+        </div>
+        <h3>Colombian Supremo</h3>
+        <p class="coffee-origin">Huila, Colombia</p>
+        <p class="coffee-price">$5.75</p>
+      </article>
+
+      <article class="coffee-card" data-name="Brazilian Santos" data-origin="Minas Gerais, Brazil" data-roast="Medium-Dark Roast" data-notes="Roasted hazelnut, dark chocolate" data-brew="Espresso" data-price="$5.25">
+        <div class="coffee-card-media">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX19Jt0rTvM-lZmkx5GBV7W5_ndQkZc9KzTEB9fGVcmw&s=10" alt="Latte art in a ceramic cup" loading="lazy">
+        </div>
+        <h3>Brazilian Santos</h3>
+        <p class="coffee-origin">Minas Gerais, Brazil</p>
+        <p class="coffee-price">$5.25</p>
+      </article>
+
+      <article class="coffee-card" data-name="Kenyan AA" data-origin="Nyeri, Kenya" data-roast="Light-Medium Roast" data-notes="Blackcurrant, grapefruit, wine-like acidity" data-brew="Pour-over" data-price="$6.95">
+        <div class="coffee-card-media">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvjF-heQs-l8cXVFzBB-aFaUPjMkmHhx4xMndZZUb4Q&s=10"></img>
+        </div>
+        <h3>Kenyan AA</h3>
+        <p class="coffee-origin">Nyeri, Kenya</p>
+        <p class="coffee-price">$6.95</p>
+      </article>
+
+      <article class="coffee-card" data-name="Sumatra Mandheling" data-origin="North Sumatra, Indonesia" data-roast="Dark Roast" data-notes="Cedar, dark cocoa, low acidity" data-brew="French Press" data-price="$5.95">
+        <div class="coffee-card-media">
+          <img  src="https://www.coffeebean.com/cdn/shop/files/E-Comm_CoffeeBagVisuals_16oz_131124-17.png?v=1731995399&width=696"></img>
+        </div>
+        <h3>Sumatra Mandheling</h3>
+        <p class="coffee-origin">North Sumatra, Indonesia</p>
+        <p class="coffee-price">$5.95</p>
+      </article>
+
+    </div>
+
+    <button class="carousel-arrow right" id="carRight" aria-label="Next">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <div class="container about-grid">
+
+    <div class="about-media" data-reveal>
+      <video autoplay muted loop playsinline src="E:\coffee-cafe website\frontend\assets\speciality-coffee\speciality-coffee-4.mp4"></video>
+      <div class="about-media-frame"></div>
+    </div>
+
+    <div class="about-copy" data-reveal>
+      <p class="eyebrow">Our Story</p>
+      <h2 class="section-title">A Little Information<br>For Our Guest</h2>
+      <p class="about-text">Whimsy Brews began as a single roasting table in the back of a corner shop. Today it's grown into a bean-to-cup house where every pour is measured, every origin is traceable, and every seat is an invitation to slow down. We roast in small batches, cup daily, and treat the cafe itself as part of the recipe.</p>
+      <div class="about-stats">
+        <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Seating Rooms</span></div>
+        <div class="stat"><span class="stat-num">100+</span><span class="stat-label">Menu Creations</span></div>
+        <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Origin Beans</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container stories-row">
+    <article class="story-card" data-reveal>
+      <img src="E:\coffee-cafe website\frontend\assets\speciality-coffee\speciality-coffee-1.jpg"></img>
+      <div class="story-body">
+        <h3>The Art of Espresso</h3>
+        <p>Technique, dose, and timing — how a nine-bar shot comes together.</p>
+      </div>
+    </article>
+    <article class="story-card" data-reveal>
+      <video autoplay muted loop playsinline src="assets/stories-section/story-2.mp4"></video>
+      <div class="story-body">
+        <h3>From Bean to Brew</h3>
+        <p>Following a single-origin lot from the farm to your cup.</p>
+      </div>
+    </article>
+    <article class="story-card" data-reveal>
+      <video autoplay muted loop playsinline src="E:\coffee-cafe website\frontend\assets\stories-section\story-1.mp4"></video>
+      <div class="story-body">
+        <h3>Coffee &amp; Craft</h3>
+        <p>Why we still weigh, time and taste every single batch.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= MENU ================= -->
+<section class="menu" id="menu">
+  <div class="container">
+    <p class="eyebrow center">Our Signature Menu</p>
+    <h2 class="section-title center">Crafted with Passion, Served with Love</h2>
+    <p class="section-sub center">From classic favorites to seasonal creations, our menu is a celebration of rich flavors and premium ingredients.</p>
+
+    <div class="menu-tabs" role="tablist" aria-label="Menu categories">
+      <button class="menu-tab active" role="tab" aria-selected="true" data-cat="coffee">Coffee</button>
+      <button class="menu-tab" role="tab" aria-selected="false" data-cat="artisanal">Artisanal Drinks</button>
+      <button class="menu-tab" role="tab" aria-selected="false" data-cat="pastries">Pastries</button>
+      <button class="menu-tab" role="tab" aria-selected="false" data-cat="mains">Main Course</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+
+      <!-- Coffee -->
+      <div class="menu-item" data-cat="coffee">
+        <div class="menu-item-top"><h3>Espresso</h3><span class="price">$3.50</span></div>
+        <p>A concentrated shot pulled from our house blend, rich crema on top.</p>
+      </div>
+      <div class="menu-item" data-cat="coffee">
+        <div class="menu-item-top"><h3>Cappuccino</h3><span class="price">$4.25</span></div>
+        <p>Equal parts espresso, steamed milk and microfoam, dusted with cocoa.</p>
+      </div>
+      <div class="menu-item" data-cat="coffee">
+        <div class="menu-item-top"><h3>Café Latte</h3><span class="price">$4.50</span></div>
+        <p>Smooth espresso layered with silky steamed milk.</p>
+      </div>
+      <div class="menu-item" data-cat="coffee">
+        <div class="menu-item-top"><h3>Americano</h3><span class="price">$3.75</span></div>
+        <p>Espresso lengthened with hot water for a lighter, rounded cup.</p>
+      </div>
+      <div class="menu-item" data-cat="coffee">
+        <div class="menu-item-top"><h3>Mocha</h3><span class="price">$4.75</span></div>
+        <p>Espresso, steamed milk and dark chocolate, finished with cream.</p>
+      </div>
+      <div class="menu-item" data-cat="coffee">
+        <div class="menu-item-top"><h3>Cold Brew</h3><span class="price">$4.00</span></div>
+        <p>Slow-steeped for eighteen hours — bold, smooth, low acidity.</p>
+      </div>
+
+      <!-- Artisanal -->
+      <div class="menu-item" data-cat="artisanal" style="display:none">
+        <div class="menu-item-top"><h3>Caramel Macchiato</h3><span class="price">$5.00</span></div>
+        <p>Espresso marked with vanilla milk and a ribbon of caramel.</p>
+      </div>
+      <div class="menu-item" data-cat="artisanal" style="display:none">
+        <div class="menu-item-top"><h3>Vanilla Cold Brew</h3><span class="price">$5.25</span></div>
+        <p>Cold brew concentrate with house vanilla bean syrup and cream.</p>
+      </div>
+      <div class="menu-item" data-cat="artisanal" style="display:none">
+        <div class="menu-item-top"><h3>Iced Spanish Latte</h3><span class="price">$5.10</span></div>
+        <p>Espresso, condensed milk and cold milk over ice.</p>
+      </div>
+      <div class="menu-item" data-cat="artisanal" style="display:none">
+        <div class="menu-item-top"><h3>Hazelnut Coffee</h3><span class="price">$4.90</span></div>
+        <p>Drip coffee finished with toasted hazelnut syrup and foam.</p>
+      </div>
+
+      <!-- Pastries -->
+      <div class="menu-item" data-cat="pastries" style="display:none">
+        <div class="menu-item-top"><h3>Butter Croissant</h3><span class="price">$3.25</span></div>
+        <p>Laminated dough, baked fresh each morning, flaky and golden.</p>
+      </div>
+      <div class="menu-item" data-cat="pastries" style="display:none">
+        <div class="menu-item-top"><h3>Chocolate Croissant</h3><span class="price">$3.75</span></div>
+        <p>Butter croissant dough wrapped around dark chocolate batons.</p>
+      </div>
+      <div class="menu-item" data-cat="pastries" style="display:none">
+        <div class="menu-item-top"><h3>Blueberry Muffin</h3><span class="price">$3.50</span></div>
+        <p>Moist muffin studded with wild blueberries and turbinado sugar.</p>
+      </div>
+      <div class="menu-item" data-cat="pastries" style="display:none">
+        <div class="menu-item-top"><h3>Cinnamon Roll</h3><span class="price">$4.10</span></div>
+        <p>Soft-proofed roll, cinnamon-sugar swirl, cream cheese glaze.</p>
+      </div>
+
+      <!-- Mains -->
+      <div class="menu-item" data-cat="mains" style="display:none">
+        <div class="menu-item-top"><h3>Avocado Toast</h3><span class="price">$8.50</span></div>
+        <p>Sourdough, smashed avocado, chili flake, soft egg on request.</p>
+      </div>
+      <div class="menu-item" data-cat="mains" style="display:none">
+        <div class="menu-item-top"><h3>Grilled Sandwich</h3><span class="price">$8.95</span></div>
+        <p>Herb-grilled sourdough, cheese, roasted tomato, basil pesto.</p>
+      </div>
+      <div class="menu-item" data-cat="mains" style="display:none">
+        <div class="menu-item-top"><h3>Creamy Pasta</h3><span class="price">$10.50</span></div>
+        <p>Short pasta in a parmesan cream sauce with cracked pepper.</p>
+      </div>
+      <div class="menu-item" data-cat="mains" style="display:none">
+        <div class="menu-item-top"><h3>Café Breakfast Platter</h3><span class="price">$11.90</span></div>
+        <p>Eggs, roasted potatoes, greens and toast — the full morning.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <p class="eyebrow center">Inside Whimsy Brews</p>
+    <h2 class="section-title center">Fun in Our Coffee Space</h2>
+    <p class="section-sub center">Good coffee, great company and beautiful, unhurried moments.</p>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <button class="gallery-item span-2" data-full="assets/interior/interior-1.jpg" data-caption="Amber evenings at the counter">
+        <img src="assets/interior/interior-1.jpg" alt="Café interior with warm pendant lighting" loading="lazy">
+        <span class="gallery-caption">Evening Ambience</span>
+      </button>
+      <button class="gallery-item" data-full="assets/interior/interior-2.jpg" data-caption="Botanical corner and the tasting wall">
+        <img src="assets/interior/interior-2.jpg" alt="Café tasting wall with plants" loading="lazy">
+        <span class="gallery-caption">Tasting Wall</span>
+      </button>
+      <button class="gallery-item" data-full="assets/interior/interior-3.jpg" data-caption="Our bar, brewing through the day">
+        <img src="assets/interior/interior-3.jpg" alt="Café espresso bar" loading="lazy">
+        <span class="gallery-caption">The Bar</span>
+      </button>
+      <button class="gallery-item span-2" data-full="assets/interior/interior-4.jpg" data-caption="Retail shelf and single-origin bags">
+        <img src="assets/interior/interior-4.jpg" alt="Café retail counter with coffee bags" loading="lazy">
+        <span class="gallery-caption">Take Some Home</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous image">&#10094;</button>
+  <figure class="lightbox-figure">
+    <img id="lightboxImg" src="" alt="">
+    <figcaption id="lightboxCaption"></figcaption>
+  </figure>
+  <button class="lightbox-nav next" id="lightboxNext" aria-label="Next image">&#10095;</button>
+</div>
+
+<!-- ================= REVIEWS ================= -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <p class="eyebrow center">What Our Guests Say</p>
+    <h2 class="section-title center">Loved, One Cup at a Time</h2>
+
+    <div class="reviews-slider">
+      <button class="rev-arrow prev" id="revPrev" aria-label="Previous review">&#10094;</button>
+
+      <div class="rev-track" id="revTrack">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Absolutely love this place. The espresso is dialed in perfectly and the staff remember your order by the second visit."</p>
+          <div class="reviewer"><span class="avatar" style="background:#C9A24A">RS</span><div><strong>Riya Sharma</strong><small>Regular Guest</small></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Best coffee experience in town. Cozy atmosphere, friendly staff, and the cold brew is unreal."</p>
+          <div class="reviewer"><span class="avatar" style="background:#8C5A34">AM</span><div><strong>Arjun Mehta</strong><small>Local Guide</small></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"A hidden gem — every visit feels special. Highly recommend the Yirgacheffe pour-over."</p>
+          <div class="reviewer"><span class="avatar" style="background:#5C4030">NV</span><div><strong>Neha Verma</strong><small>Coffee Enthusiast</small></div></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"My favorite work-from-cafe spot. Quiet corners, strong wifi, and pastries that disappear fast."</p>
+          <div class="reviewer"><span class="avatar" style="background:#B27A3E">DK</span><div><strong>David Kim</strong><small>Freelancer</small></div></div>
+        </div>
+      </div>
+
+      <button class="rev-arrow next" id="revNext" aria-label="Next review">&#10095;</button>
+    </div>
+    <div class="rev-dots" id="revDots"></div>
+  </div>
+</section>
+
+<!-- ================= LOCATION / VISIT ================= -->
+<section class="visit" id="visit">
+  <div class="container visit-grid">
+    <div class="visit-info" data-reveal>
+      <p class="eyebrow">Get in Touch</p>
+      <h2 class="section-title">Visit the Café</h2>
+      <p class="about-text">We'd love to host you — whether it's a quiet morning pour-over or an evening catch-up with friends.</p>
+
+      <ul class="visit-list">
+        <li><strong>Address</strong><span>48 Harborview Lane, Brookhaven, NY 11719</span></li>
+        <li><strong>Hours</strong><span>Monday – Sunday, 7:00 AM – 10:00 PM</span></li>
+        <li><strong>Phone</strong><span>+1 (555) 123-4287</span></li>
+        <li><strong>Email</strong><span>hello@Whimsy Brews.com</span></li>
+      </ul>
+
+      <a href="contact.html" class="btn btn-solid">Get In Touch</a>
+    </div>
+
+    <div class="visit-map" data-reveal>
+      <iframe
+        title="Aurelia Coffee & Café location"
+        src="https://www.google.com/maps?q=New+York&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESERVATION ================= -->
+<section class="reserve" id="reserve">
+  <div class="container reserve-inner">
+    <div class="reserve-copy" data-reveal>
+      <p class="eyebrow">Reserve Your Table</p>
+      <h2 class="section-title">Save a Seat by the Window</h2>
+      <p class="about-text">Tell us when you're coming and how many are joining — we'll have the table ready.</p>
+    </div>
+
+    <form class="reserve-form" id="reserveForm" data-reveal novalidate>
+      <div class="form-row">
+        <div class="field">
+          <label for="rName">Name</label>
+          <input type="text" id="rName" name="name" placeholder="Your full name" required>
+          <span class="field-error" id="rNameError"></span>
+        </div>
+        <div class="field">
+          <label for="rEmail">Email</label>
+          <input type="email" id="rEmail" name="email" placeholder="you@example.com" required>
+          <span class="field-error" id="rEmailError"></span>
+        </div>
+      </div>
+      <div class="form-row three">
+        <div class="field">
+          <label for="rDate">Date</label>
+          <input type="date" id="rDate" name="date" required>
+          <span class="field-error" id="rDateError"></span>
+        </div>
+        <div class="field">
+          <label for="rTime">Time</label>
+          <input type="time" id="rTime" name="time" required>
+          <span class="field-error" id="rTimeError"></span>
+        </div>
+        <div class="field">
+          <label for="rGuests">Guests</label>
+          <input type="number" id="rGuests" name="guests" min="1" max="20" placeholder="2" required>
+          <span class="field-error" id="rGuestsError"></span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="rRequest">Special Request <em>(optional)</em></label>
+        <textarea id="rRequest" name="request" rows="3" placeholder="Window seat, allergy notes, celebration..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-solid reserve-submit" id="reserveSubmit">
+        <span class="btn-label">Reserve Your Table</span>
+        <span class="btn-spinner" aria-hidden="true"></span>
+      </button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="#home" class="logo">
+        <svg class="logo-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true">
+          <path d="M24 4C15 10 10 18 10 26a14 14 0 0 0 28 0c0-8-5-16-14-22Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M24 12c-4 4-7 9-7 14a7 7 0 0 0 14 0c0-5-3-10-7-14Z" fill="currentColor" opacity="0.85"/>
+        </svg>
+        <span class="logo-text">Whimsy Brews<em>Brews &amp; Café</em></span>
+      </a>
+      <p>A specialty coffee house built around rare beans, patient brewing, and a room worth lingering in.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="X / Twitter">X</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <a href="#menu">Coffee</a>
+      <a href="#menu">Artisanal Drinks</a>
+      <a href="#menu">Pastries</a>
+      <a href="#menu">Main Course</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="contact.html">Contact Us</a>
+      <span>48 Harborview Lane, Brookhaven, NY</span>
+      <span>+1 (555) 123-4287</span>
+      <span>hello@whimsyBrews.com</span>
+    </div>
+  </div>
+
+  <div class="footer-bottom container">
+    <span>&copy; 2026 Whimsy Brews &amp; Café. All rights reserved.</span>
+    <span class="footer-credit">Developed by Arpita Nayak [Suusri AI]</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  window.WHIMSY_BREWS_API_BASE = "http://localhost:5000";
+</script>
+<script src="main.js"></script>
+<script src="contact.js"></script>
+</body>
+</html>
