@@ -77,13 +77,14 @@ def contact():
         return jsonify({"success": False,"message":error_msg, "errors": errors}), 400
 
     body = f"New contact inquiry\n\nName: {name}\nPhone: {phone}\nEmail: {email}\n\nMessage:\n{message}"
-    emailed = send_email("New contact inquiry — Whimsy Brews & cafe", body)
+    # emailed = send_email("New contact inquiry — Whimsy Brews & cafe", body)
+    emailed=False
 
     app.logger.info("Contact inquiry received: %s <%s>", name, email)
 
     return jsonify({
         "success": True,
-        "emailed": emailed,
+        "emailed": False,
         "message": "Inquiry received." if emailed else "Inquiry received. (Email delivery is not configured on this server.)",
     }),200
 
@@ -121,12 +122,13 @@ def reservation():
         f"New table reservation\n\nName: {name}\nEmail: {email}\nDate: {date}\n"
         f"Time: {time_}\nGuests: {guests}\nSpecial request: {special_request or '—'}"
     )
-    emailed = send_email("New reservation request — Aurelia Coffee & Café", body)
+    # emailed = send_email("New reservation request — Whimsy Brews & Café", body)
+    emailed=False
     app.logger.info("Reservation received: %s for %s guests on %s at %s", name, guests, date, time_)
 
     return jsonify({
         "success": True,
-        "emailed": emailed,
+        "emailed": False,
         "message": "Reservation received." if emailed else "Reservation received. (Email delivery is not configured on this server.)",
     }),200
 
