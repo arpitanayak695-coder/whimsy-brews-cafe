@@ -115,13 +115,14 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
-      if (!res.ok) throw new Error("Request failed with status " + res.status);
+      const data = await res.json();
+      if (!res.ok || data.success){throw new Error(data.message||"Request failed with status " + res.status);}
 
       showToast("Inquiry sent successfully. We'll be in touch soon!");
       formNote.textContent = "Thanks — your message is on its way to our team.";
       form.reset();
     } catch (err) {
+      console.error("Contact form Error:",err);
       showToast("We couldn't send your message right now.", "error");
       formNote.textContent = "The contact service isn't reachable at the moment. Please call +1 (555) 123-4287 or email hello@aureliacoffee.com directly.";
       formNote.classList.add("error");

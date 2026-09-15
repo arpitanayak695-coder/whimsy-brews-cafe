@@ -27,9 +27,6 @@ SMTP_CONFIGURED = all([SMTP_HOST, SMTP_USERNAME, SMTP_PASSWORD])
 
 
 def send_email(subject: str, body: str) -> bool:
-    """Send a plain-text email via SMTP. Returns True on success, False if
-    SMTP isn't configured or sending fails — callers must not claim success
-    when this returns False."""
     if not SMTP_CONFIGURED:
         app.logger.info("SMTP not configured — skipping real email send.")
         return False
@@ -43,18 +40,23 @@ def send_email(subject: str, body: str) -> bool:
             server.login(SMTP_USERNAME, SMTP_PASSWORD)
             server.sendmail(SMTP_USERNAME, [COMPANY_EMAIL], msg.as_string())
         return True
-    except Exception as exc:  # noqa: BLE001
+    except Exception as exc:
         app.logger.error("Email send failed: %s", exc)
         return False
-
 
 @app.route("/api/health", methods=["GET"])
 def health():
     return jsonify({"status": "ok", "time": datetime.utcnow().isoformat()})
 
-
-@app.route("/api/contact", methods=["POST"])
+# contact form
+@app.route("/api/contact", methods=["POST","OPTIONS"])
 def contact():
+    if request.method == "OPTIONS":
+        response = jsonify({"success": True})
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.headers.add("Access-Control-Allow-Headers", "Content-Type")
+        response.headers.add("Access-Control-Allow-Methods", "POST, OPTIONS")
+        return response, 200
     data = request.get_json(silent=True) or {}
     name = (data.get("name") or "").strip()
     phone = (data.get("phone") or "").strip()
@@ -70,23 +72,22 @@ def contact():
         errors["email"] = "A valid email address is required."
     if not message or len(message) < 10:
         errors["message"] = "Message must be at least 10 characters."
-
     if errors:
-        return jsonify({"success": False, "errors": errors}), 400
+        error_msg=",".json(errors.values())
+        return jsonify({"success": False,"message":error_msg, "errors": errors}), 400
 
     body = f"New contact inquiry\n\nName: {name}\nPhone: {phone}\nEmail: {email}\n\nMessage:\n{message}"
-    emailed = send_email("New contact inquiry — Aurelia Coffee & Café", body)
+    emailed = send_email("New contact inquiry — Whimsy Brews & cafe", body)
 
-    # Always store/log the inquiry regardless of email delivery, so nothing is lost.
     app.logger.info("Contact inquiry received: %s <%s>", name, email)
 
     return jsonify({
         "success": True,
         "emailed": emailed,
         "message": "Inquiry received." if emailed else "Inquiry received. (Email delivery is not configured on this server.)",
-    })
+    }),200
 
-
+# reservation table
 @app.route("/api/reservation", methods=["POST"])
 def reservation():
     data = request.get_json(silent=True) or {}
@@ -127,7 +128,7 @@ def reservation():
         "success": True,
         "emailed": emailed,
         "message": "Reservation received." if emailed else "Reservation received. (Email delivery is not configured on this server.)",
-    })
+    }),200
 
 
 if __name__ == "__main__":

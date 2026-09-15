@@ -317,7 +317,10 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error("Request failed");
+
+      const data=await res.json();
+
+      if (!res.ok || !data.success){throw new Error(data.message || "Request failed");}
       showToast("Table reserved! We'll email a confirmation shortly.");
       reserveForm.reset();
     } catch (err) {
