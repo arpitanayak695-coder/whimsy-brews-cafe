@@ -291,7 +291,7 @@
 
     return valid;
   }
-
+if(reserveForm) {
   reserveForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (!validateReserveForm()) {
@@ -320,10 +320,11 @@
 
       const data=await res.json();
 
-      if (!res.ok || !data.success){throw new Error(data.message || "Request failed");}
+      if (!res.ok || !data.success){throw new Error(data.message || "Request failed.");}
       showToast("Table reserved! We'll email a confirmation shortly.");
       reserveForm.reset();
     } catch (err) {
+      console.err("Reservation Error:",err);
       showToast("We couldn't reach the reservation service. Please call us instead.", "error");
     } finally {
       reserveSubmit.classList.remove("loading");

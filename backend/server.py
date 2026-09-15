@@ -85,7 +85,7 @@ def contact():
     return jsonify({
         "success": True,
         "emailed": False,
-        "message": "Inquiry received." if emailed else "Inquiry received. (Email delivery is not configured on this server.)",
+        "message": "Inquiry received.(Email delivery is not configured on this server.)",
     }),200
 
 # reservation table
@@ -129,7 +129,7 @@ def reservation():
     return jsonify({
         "success": True,
         "emailed": False,
-        "message": "Reservation received." if emailed else "Reservation received. (Email delivery is not configured on this server.)",
+        "message": "Reservation received.(Email delivery is not configured on this server.)",
     }),200
 
 

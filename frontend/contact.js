@@ -86,7 +86,7 @@
 
     return valid;
   }
-
+if (form){
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     formNote.textContent = "";
@@ -115,8 +115,9 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+    
       const data = await res.json();
-      if (!res.ok || data.success){throw new Error(data.message||"Request failed with status " + res.status);}
+      if (!res.ok || !data.success){throw new Error(data.message||"Request failed with status " + res.status);}
 
       showToast("Inquiry sent successfully. We'll be in touch soon!");
       formNote.textContent = "Thanks — your message is on its way to our team.";
@@ -131,6 +132,7 @@
       submitBtn.disabled = false;
     }
   });
+}
 
   /* Entrance animation */
   if (window.gsap) {
