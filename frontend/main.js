@@ -324,13 +324,14 @@ if(reserveForm) {
       showToast("Table reserved! We'll email a confirmation shortly.");
       reserveForm.reset();
     } catch (err) {
-      console.err("Reservation Error:",err);
+      console.error("Reservation Error:",err);
       showToast("We couldn't reach the reservation service. Please call us instead.", "error");
     } finally {
       reserveSubmit.classList.remove("loading");
       reserveSubmit.disabled = false;
     }
   });
+}
 
   /* =========================================================
      GSAP SCROLLTRIGGER REVEALS
@@ -530,3 +531,4 @@ if(reserveForm) {
     window.addEventListener("load", () => { if (window.THREE) initHeroScene(); });
   }
 })();
+

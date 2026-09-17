@@ -49,14 +49,14 @@ def health():
     return jsonify({"status": "ok", "time": datetime.utcnow().isoformat()})
 
 # contact form
-@app.route("/api/contact", methods=["POST","OPTIONS"])
+@app.route("/api/contact", methods=["POST"])
 def contact():
-    if request.method == "OPTIONS":
-        response = jsonify({"success": True})
-        response.headers.add("Access-Control-Allow-Origin", "*")
-        response.headers.add("Access-Control-Allow-Headers", "Content-Type")
-        response.headers.add("Access-Control-Allow-Methods", "POST, OPTIONS")
-        return response, 200
+    # if request.method == "OPTIONS":
+        # response = jsonify({"success": True})
+        # response.headers.add("Access-Control-Allow-Origin", "*")
+        # response.headers.add("Access-Control-Allow-Headers", "Content-Type")
+        # response.headers.add("Access-Control-Allow-Methods", "POST, OPTIONS")
+        # return response, 200
     data = request.get_json(silent=True) or {}
     name = (data.get("name") or "").strip()
     phone = (data.get("phone") or "").strip()
@@ -73,11 +73,11 @@ def contact():
     if not message or len(message) < 10:
         errors["message"] = "Message must be at least 10 characters."
     if errors:
-        error_msg=",".json(errors.values())
-        return jsonify({"success": False,"message":error_msg, "errors": errors}), 400
+       error_msg = ", ".join(errors.values())
+       return jsonify({"success": False,"message":error_msg, "errors": errors}), 400
 
     body = f"New contact inquiry\n\nName: {name}\nPhone: {phone}\nEmail: {email}\n\nMessage:\n{message}"
-    # emailed = send_email("New contact inquiry — Whimsy Brews & cafe", body)
+    emailed = send_email("New contact inquiry — Whimsy Brews & cafe", body)
     emailed=False
 
     app.logger.info("Contact inquiry received: %s <%s>", name, email)
@@ -122,7 +122,7 @@ def reservation():
         f"New table reservation\n\nName: {name}\nEmail: {email}\nDate: {date}\n"
         f"Time: {time_}\nGuests: {guests}\nSpecial request: {special_request or '—'}"
     )
-    # emailed = send_email("New reservation request — Whimsy Brews & Café", body)
+    emailed = send_email("New reservation request — Whimsy Brews & Café", body)
     emailed=False
     app.logger.info("Reservation received: %s for %s guests on %s at %s", name, guests, date, time_)
 
